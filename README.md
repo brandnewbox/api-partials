@@ -36,6 +36,11 @@ In the head of your application.html.haml
 <%= yield :api_partials %>
 ```
 
+Create a folder for your partials at
+```
+app/views/api_partials
+```
+
 # Creating Partials
 * in `app/views` create the folder `api_partials`
 * inside `app/views/api_partials` create a folder with the name of the new partial, like `project_pie_chart`
