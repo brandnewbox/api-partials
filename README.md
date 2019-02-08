@@ -1,8 +1,5 @@
 # Api::Partials
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+api-partials is a framework to allow your partials to reload whenever and however you would like them to
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -45,10 +42,10 @@ app/views/api_partials
 * inside `app/views/api_partials` create a folder with the name of the new partial, like `your_new_component`
 * inside `app/views/api_partials/your_new_component` you need:
   * `_view.html.haml (or .html.erb)`
-  * `_view.js`
+  * `_script.js`
   * `_render.json.jbuilder` OR `_render.html.haml (or .html.erb)` depending on what `format` you pass in
 
-* in  `_view.js` define a function that you want called to reload your partial. It MUST be named reload_your_new_component, or in this case, `reload_project_pie_chart`
+* in  `_script.js` define a function that you want called to reload your partial. It MUST be named reload_your_new_component, or in this case, `reload_your_new_component(response)`
 
 ### Use it!
 Put this is your view, and you're good to go!
