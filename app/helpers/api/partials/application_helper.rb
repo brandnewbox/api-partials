@@ -9,9 +9,10 @@ module Api
         options[:class] = 'api-partial'
         options["data-tags"] = tags.map(&:to_s).to_s if tags
         content_for :api_partials do
-          javascript_tag(render partial:"api_partials/#{partial}/script.js")    
+          javascript_tag(render partial:"api_partials/#{partial}/script.js") 
         end
         content_tag(:div, (render partial: "api_partials/#{partial}/view", locals: locals), options)
+
       end
 
     end
