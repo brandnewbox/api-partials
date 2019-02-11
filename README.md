@@ -20,7 +20,7 @@ $ gem install api-partials
 
 Mount to your application:
 ```
-mount Api::Partials::Engine => "/anywhere"
+mount Api::Partials::Engine => "api_partials"
 ```
 
 In your application.js
