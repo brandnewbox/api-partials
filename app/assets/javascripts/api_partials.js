@@ -37,10 +37,11 @@ function reloadApiPartials(tags=[]) {
 }
 
 function reloadApiPartialComplete(container, response) {  
-  var fn = window["reload_"+container.dataset.locals_partial];
+  var fn_name = container.dataset.locals_partial.replace(/\//g, '_');
+  var fn = window["reload_"+fn_name];
   if (container.dataset.response_format == 'json')
     response = JSON.parse(response)
   if (typeof fn === 'function') {
-    fn(response);
+    fn(container, response);
   }
 }

@@ -50,7 +50,7 @@ app/views/api_partials
   * `_script.js`
   * `_render.json.jbuilder` OR `_render.html.haml (or .html.erb)` depending on what `format` you pass in
 
-* in  `_script.js` define a function that you want called to reload your partial. It MUST be named reload_your_new_component, or in this case, `reload_your_new_component(response)`
+* in  `_script.js` define a function that you want called to reload your partial. This function will be passed 2 params,v the DOM element and the resposne like: (api_partial, response). **It MUST be named reload_your_new_component**, or in this case, `reload_your_new_component(api_partial, response)`. If you're partial is nested like `views/api_partials/users/your_new_component`, your method would be called `reload_users_your_new_component(api_partial, response)`
 
 ### Use it!
 Put this is your view, and you're good to go!
