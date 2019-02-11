@@ -28,6 +28,11 @@ In your application.js
 //= require api_partials.js
 ```
 
+In controllers/application_controller.rb include the helper
+```
+helper Api::Partials::ApplicationHelper
+```
+
 In the head of your application.html.haml
 ```
 <%= yield :api_partials %>
@@ -57,7 +62,7 @@ Put this is your view, and you're good to go!
 * `partial:` name of the partial
 * `format:` either `json`, or `html`. This determines whether reload calls `_render.json.jbuilder` or `_render.html.haml (or .html.erb)`
 * `locals:` hash of local variables that your view template will need
-* optional `tags:` array of tags that is used to specify which partials should reload. If nothing is passed in, all partials will reload
+* `tags:` optional. Array that specificies when this partial should reload. If nothing is passed in, the partial will reload always.
 
 ### Reload!
 You probably want these partials to actually reload, right?
