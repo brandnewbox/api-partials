@@ -23,24 +23,28 @@ function reloadApiPartials(tags=[]) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    if (container.dataset.response_format == "json") 
+      { xhr.responseType = "json" }
+    else 
+      { xhr.responseType = "text" }
     xhr.onload = function() {
-      if (xhr.status === 200)
-        reloadApiPartialComplete(container, xhr.responseText)
+      if (xhr.status === 200) {
+        reloadApiPartialComplete(container, xhr.response)  
+      } 
     };
     xhr.send(JSON.stringify({
       api_partial: {
         partial: container.dataset.locals_partial,
-        locals: locals 
+        locals: locals,
+        response_format: container.dataset.response_format
       }        
     }));
   }
 }
 
-function reloadApiPartialComplete(container, response) {  
+function reloadApiPartialComplete(container, response) {
   var fn_name = container.dataset.locals_partial.replace(/\//g, '_');
-  var fn = window["reload_"+fn_name];
-  if (container.dataset.response_format == 'json')
-    response = JSON.parse(response)
+  var fn = window["reload_"+fn_name];  
   if (typeof fn === 'function') {
     fn(container, response);
   }

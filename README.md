@@ -48,7 +48,7 @@ app/views/api_partials
 * inside `app/views/api_partials/your_new_component` you need:
   * `_view.html.haml (or .html.erb)`
   * `_script.js`
-  * `_render.json.jbuilder` OR `_render.html.haml (or .html.erb)` depending on what `format` you pass in
+  * `_response.json.jbuilder` OR `_response.html.haml (or .html.erb)` depending on what `format` you pass in
 
 * in  `_script.js` define a function that you want called to reload your partial. This function will be passed 2 params,v the DOM element and the resposne like: (api_partial, response). **It MUST be named reload_your_new_component**, or in this case, `reload_your_new_component(api_partial, response)`. If you're partial is nested like `views/api_partials/users/your_new_component`, your method would be called `reload_users_your_new_component(api_partial, response)`
 
@@ -60,7 +60,7 @@ Put this is your view, and you're good to go!
 
 ### Parameters
 * `partial:` name of the partial
-* `format:` either `json`, or `html`. This determines whether reload calls `_render.json.jbuilder` or `_render.html.haml (or .html.erb)`
+* `format:` either `json`, or `html`. This determines whether reload calls `_response.json.jbuilder` or `_response.html.haml (or .html.erb)`
 * `locals:` hash of local variables that your view template will need
 * `tags:` optional. Array that specificies when this partial should reload. If nothing is passed in, the partial will reload always.
 
