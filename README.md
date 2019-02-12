@@ -75,6 +75,9 @@ Call `reloadApiPartials()` from anywhere. This will reload all the partials on t
 * **Q: Can I just replace the html with the same view.html template on reload? I don't want render.html to be a copy of view.html**
 * **A: Of course. In render.html, render the view partial like so :`= render partial: "/api_partials/your_new_component/view"`**
 
+### Reloading indicators
+Any element in your `_view.html.haml` with the class `api-partial-reloading-indicator` will be set to `display: "block";` when the partial is in the middle of reloading. Once it is done, the element will be set to `display: "none";`
+
 ### Making this gem more useful
 This gem can easily be utilized by something like [actioncable](https://guides.rubyonrails.org/action_cable_overview.html) (websockets) to live reload your views as things are changing in the background. All you need to do is call `reloadApiPartials`.
 

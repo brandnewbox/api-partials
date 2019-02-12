@@ -10,6 +10,11 @@ function reloadApiPartials(tags=[]) {
       else continue
     }
     let container = apiPartials[i];    
+    let reloadingIndicator = container.getElementsByClassName("api-partial-reloading-indicator");
+    for (let y=0; y<reloadingIndicator.length; y++) {
+      reloadingIndicator[y].style.display = "block";
+    }
+    
     let locals = JSON.parse(container.dataset.locals)
     let url = '/api_partials/render'
     let xhr = new XMLHttpRequest();
@@ -22,7 +27,7 @@ function reloadApiPartials(tags=[]) {
       { xhr.responseType = "text" }
     xhr.onload = function() {
       if (xhr.status === 200) {
-        reloadApiPartialComplete(container, locals, xhr.response)  
+        reloadApiPartialComplete(container, locals, xhr.response, reloadingIndicator)  
       } 
     };
     xhr.send(JSON.stringify({
@@ -35,10 +40,13 @@ function reloadApiPartials(tags=[]) {
   }
 }
 
-function reloadApiPartialComplete(container, locals, response) {
+function reloadApiPartialComplete(container, locals, response, reloadingIndicator) {
   var fn_name = locals.partial.replace(/\//g, '_');
   var fn = window["reload_"+fn_name];  
   if (typeof fn === 'function') {
     fn(container, response);
+  }
+  for (let y=0; y<reloadingIndicator.length; y++) {
+    reloadingIndicator[y].style.display = "none";
   }
 }
